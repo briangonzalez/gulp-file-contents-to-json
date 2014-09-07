@@ -47,7 +47,7 @@ gulp.task('create-json-blob', function() {
 
 Simply run the following and you're done:
 
-```
+```shell
 $ gulp create-json-blob
 ```
 
