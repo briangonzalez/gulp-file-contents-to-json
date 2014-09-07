@@ -1,0 +1,10 @@
+root:
+  ~/code/github/gulp-file-contents-to-json
+
+commands:
+  git:       git st
+  test:      mocha
+
+layout:
+  - [ git ]
+  - [ test ]

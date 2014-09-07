@@ -1,0 +1,22 @@
+{
+  "name": "gulp-file-contents-to-json",
+  "version": "0.1.0",
+  "description": "Slurp in some files, output a JSON representation of their contents.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"mocha"
+  },
+  "author": {
+    "name": "Brian Gonzalez"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "~3.8.7",
+    "mocha": "*"
+  },
+  "dependencies": {
+    "nconf": "~0.6.9",
+    "gulp-util": "~3.0.1",
+    "through2": "~0.6.1"
+  }
+}
