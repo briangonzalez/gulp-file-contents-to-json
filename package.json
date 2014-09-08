@@ -1,6 +1,6 @@
 {
   "name": "gulp-file-contents-to-json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Slurp in some files, output a JSON representation of their contents.",
   "main": "index.js",
   "scripts": {

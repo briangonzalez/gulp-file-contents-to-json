@@ -5,20 +5,25 @@ var gutil = require('gulp-util');
 var path = require('path');
 
 var nconf = require('nconf');
-nconf.use('memory');
+nconf.file({ file: 'store.json' });
 
 var PLUGIN_NAME = 'gulp-file-contents-to-json';
 
 module.exports = function (dest) {
 
   var first = null;
+  var guid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random()*16|0,v=c==='x'?r:r&0x3|0x8;return v.toString(16);
+  });
 
+  //
   // Setup the stream to be returned.
   // through2.obj(fn) is a convenience wrapper around
   // through2({ objectMode: true }, fn)
   //
   return through2.obj(function (file, enc, callback) {
 
+    //
     // Always error if file is a stream or null.
     //
     if ( file.isNull() ) {
@@ -31,19 +36,22 @@ module.exports = function (dest) {
 
     try {
 
-      // Use Nconf to create a json object
+      //
+      // Use nconf to create a json object of our files.
+      //
       first = first || file;
       var id = file.path.replace(file.base, '').split('/').join(':');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
       var contents = file.contents.toString("utf-8");
-      nconf.set(id, contents);
+      nconf.set(guid + ':' + id, contents);
 
+      //
       // Create file which will become the JSON blob.
       //
       var out = new gutil.File({
         base: first.base,
         cwd: first.cwd,
         path: path.join(file.base, dest),
-        contents: new Buffer(JSON.stringify(nconf.get(), null, 2))
+        contents: new Buffer(JSON.stringify(nconf.get(guid), null, 2))
       });
 
       this.push(out);
