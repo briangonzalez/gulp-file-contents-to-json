@@ -29,10 +29,10 @@ my-files
 
 ```json
 {
-  "bar.txt": "This is bar.",
-  "foo.txt": "This is foo.",
+  "bar.txt": "Content of bar.",
+  "foo.txt": "Contents of foo.",
   "my-folder": {
-    "baz.txt": "This is baz."
+    "baz.txt": "Contents of baz."
   }
 }
 ```
