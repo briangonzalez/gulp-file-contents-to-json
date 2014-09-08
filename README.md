@@ -4,6 +4,13 @@
 
 Slurp in some files, output a JSON representation of their contents.
 
+Installation
+
+```shell
+$ npm install gulp-file-contents-to-json
+```
+
+
 How it works
 ------------
 

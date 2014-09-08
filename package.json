@@ -7,7 +7,9 @@
     "test": "echo \"mocha"
   },
   "author": {
-    "name": "Brian Gonzalez"
+    "name": "Brian Gonzalez",
+    "email": "me@briangonzalez.org",
+    "url": "http://briangonzalez.org"
   },
   "license": "MIT",
   "devDependencies": {
