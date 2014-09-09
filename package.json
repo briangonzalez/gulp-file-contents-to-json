@@ -1,10 +1,11 @@
 {
   "name": "gulp-file-contents-to-json",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Slurp in some files, output a JSON representation of their contents.",
   "main": "index.js",
+  "repository": "briangonzalez/gulp-file-contents-to-json",
   "scripts": {
-    "test": "echo \"mocha"
+    "test": "mocha"
   },
   "author": {
     "name": "Brian Gonzalez",
