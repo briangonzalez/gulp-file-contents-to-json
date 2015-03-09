@@ -4,6 +4,8 @@
 
 Slurp in some files, output a JSON representation of their contents.
 
+Check out the broccoli equivalent [here](https://github.com/briangonzalez/broccoli-file-contents-to-json).
+
 Installation
 ------------
 
