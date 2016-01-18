@@ -55,6 +55,15 @@ gulp.task('create-json-blob', function() {
 });
 ```
 
+Options may be included. `extname` as false removes file extensions and this is useful when wanting dot notation, `flat` as true removes the path and therefore the resulting json object is one layer deep. Be careful to avoid duplicate filenames when using the flat option.
+
+```javascript
+      .pipe(fc2json('contents.json', {
+        extname : false, // default is true
+        flat : true // default is false
+      }))
+```
+
 Simply run the following and you're done:
 
 ```shell
