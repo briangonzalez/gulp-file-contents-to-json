@@ -9,8 +9,12 @@ nconf.file({ file: 'store.json' });
 
 var PLUGIN_NAME = 'gulp-file-contents-to-json';
 
-module.exports = function (dest) {
-
+module.exports = function (dest, options) {
+  
+  // set defaults for options here
+  options = options ? options : {};
+  
+  
   var first = null;
   var guid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0,v=c==='x'?r:r&0x3|0x8;return v.toString(16);
@@ -41,6 +45,19 @@ module.exports = function (dest) {
       //
       first = first || file;
       var id = file.path.replace(file.base, '').split('/').join(':');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
+      
+      if (options.extname === false) { 
+        // 'foo:bar:baz.txt' => 'foo:bar:baz'
+        //http://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
+        id = id.replace(/\.[^/.]+$/, '');  
+      }; 
+
+      if (options.flat === true) { 
+        // 'foo:bar:baz.txt' => 'baz.txt'
+        // 'foo:bar:baz' => 'baz'
+        id = id.split(':').reverse()[0]; 
+      }; 
+
       var contents = file.contents.toString("utf-8");
       nconf.set(guid + ':' + id, contents);
 
