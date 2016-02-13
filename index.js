@@ -58,6 +58,12 @@ module.exports = function (dest, options) {
         id = id.split(':').reverse()[0]; 
       }; 
 
+      if (options.flatpath === true) {
+        // 'foo:bar:baz.txt' => 'foo__bar__baz.txt'
+        // 'foo:bar:baz' => 'foo__bar__baz'
+        id = id.replace(/:/g,'__');
+      }
+
       var contents = file.contents.toString("utf-8");
       nconf.set(guid + ':' + id, contents);
 
