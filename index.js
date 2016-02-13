@@ -45,7 +45,7 @@ module.exports = function (dest, options) {
       //
       first = first || file;
       var delimiter = (options.flatpathdelimiter) ? options.flatpathdelimiter : ':'; // Support for custom delimiter
-      var id = file.path.replace(file.base, '').split('/').join(delimiter);   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
+      var id = file.path.replace(file.base, '').replace(/\\/g,'/').split('/').join(delimiter);   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
       
       if (options.extname === false) { 
         // 'foo:bar:baz.txt' => 'foo:bar:baz'
