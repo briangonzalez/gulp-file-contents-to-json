@@ -44,7 +44,7 @@ module.exports = function (dest, options) {
       // Use nconf to create a json object of our files.
       //
       first = first || file;
-      var id = file.path.replace(file.base, '').split('/').join(':');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
+      var id = file.path.replace(file.base, '').replace(/\\/g,'/').split('/').join(':');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
       
       if (options.extname === false) { 
         // 'foo:bar:baz.txt' => 'foo:bar:baz'
