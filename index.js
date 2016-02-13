@@ -44,7 +44,8 @@ module.exports = function (dest, options) {
       // Use nconf to create a json object of our files.
       //
       first = first || file;
-      var id = file.path.replace(file.base, '').split('/').join(':');   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
+      var delimiter = (options.flatpathdelimiter) ? options.flatpathdelimiter : ':'; // Support for custom delimiter
+      var id = file.path.replace(file.base, '').split('/').join(delimiter);   // 'foo/bar/bax.txt' => 'foo:bar:baz.txt'
       
       if (options.extname === false) { 
         // 'foo:bar:baz.txt' => 'foo:bar:baz'
@@ -57,12 +58,6 @@ module.exports = function (dest, options) {
         // 'foo:bar:baz' => 'baz'
         id = id.split(':').reverse()[0]; 
       }; 
-
-      if (options.flatpath === true) {
-        // 'foo:bar:baz.txt' => 'foo__bar__baz.txt'
-        // 'foo:bar:baz' => 'foo__bar__baz'
-        id = id.replace(/:/g,'__');
-      }
 
       var contents = file.contents.toString("utf-8");
       nconf.set(guid + ':' + id, contents);
