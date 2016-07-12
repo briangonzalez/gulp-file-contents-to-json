@@ -55,14 +55,17 @@ gulp.task('create-json-blob', function() {
 });
 ```
 
-Options may be included. `extname` as false removes file extensions and this is useful when wanting dot notation. 
-`flat` as true removes the path and therefore the resulting json object is one layer deep (be careful to avoid duplicate filenames when using the flat option). 
-`flatpathdelimiter` will like `flat` result in a one layer deep json object, but where the path is included, separated with the custom delimiter set in `flatpathdelimiter`.
+Options may be included.
+* `extname` as false removes file extensions and this is useful when wanting dot notation.
+* `strip` takes a RegExp to strip content off the file name. This is useful if you have a directory of template files (e.g. contactTemplate.html, hoursTemplate.html) and need to strip the "Template" naming convention off each file.
+* `flat` as true removes the path and therefore the resulting json object is one layer deep (be careful to avoid duplicate filenames when using the flat option).
+* `flatpathdelimiter` will like `flat` result in a one layer deep json object, but where the path is included, separated with the custom delimiter set in `flatpathdelimiter`.
 
 ```javascript
       .pipe(fc2json('contents.json', {
-        extname : false, // default is true
-        flat : true, // default is false
+        extname: false, // default is true
+        strip: /Template/, // default is not set
+        flat: true, // default is false
         flatpathdelimiter: '__' // default is not set, delimiter will be ':'
       }))
 ```
