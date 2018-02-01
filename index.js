@@ -56,11 +56,14 @@ module.exports = function (dest, options) {
       if (options.strip instanceof RegExp) {
         id = id.replace(options.strip, '');
       };
+      
+      var baseRef = first;
 
       if (options.flat === true) {
         // 'foo:bar:baz.txt' => 'baz.txt'
         // 'foo:bar:baz' => 'baz'
         id = id.split(':').reverse()[0];
+        baseRef = file;
       };
 
       var contents = file.contents.toString("utf-8");
@@ -70,8 +73,8 @@ module.exports = function (dest, options) {
       // Create file which will become the JSON blob.
       //
       var out = new gutil.File({
-        base: first.base,
-        cwd: first.cwd,
+        base: baseRef.base,
+        cwd: baseRef.cwd,
         path: path.join(file.base, dest),
         contents: new Buffer(JSON.stringify(nconf.get(guid), null, 2))
       });
